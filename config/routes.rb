@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  
+  namespace :admins do
+  
+  end
   # devise_for :customers
   # devise_for :admins
   devise_for :admins, controllers: {
