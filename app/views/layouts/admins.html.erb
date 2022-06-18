@@ -6,33 +6,48 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   
 <!--<管理者側＞-->
 
-  <body>
-    <header>
-      <div class="container">
-        <a class ="navbar-brand p-3" href="/"><%= image_tag("nagano-cake.png")%></a>
-        <ul class="navbar-nav ml-auto">
+  <body class="d-flex flex-column vh-100">
+    <header class="border-bottom border-dark">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class ="navbar-brand" href="/"><%= image_tag "naganocake.png", class: "logo" %></a>
+          <ul class="navbar-nav ml-auto navbar-expand-lg">
           <% if admin_signed_in? %>
-            <li class ="nav-item">商品一覧</li>
-            <li class ="nav-item">会員一覧</li>
-            <li class ="nav-item">注文履歴一覧</li>
-            <li class ="nav-item">ジャンル一覧</li>
-            <li class="nav-item">
+            <li class ="nav-item border rounded">
+              <%= link_to "商品一覧", admins_sweets_index_path, class: 'nav-link text-dark' %>
+            </li>
+             <li class ="nav-item ml-4 border rounded">
+              <%= link_to "会員一覧", admins_customers_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class ="nav-item ml-4 border rounded">
+              <%= link_to "注文履歴一覧", admins_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item ml-4 border rounded">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
           <% else %>
-            <li class="nav-item">About</li>
-            <li class="nav-item">商品一覧</li>
-            <li class="nav-item">新規登録</li>
-            <li class="nav-item">ログイン</li>
+            <li class="nav-item ml-4 border rounded">
+              <%= link_to "About", customers_homes_about_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item ml-4 border rounded">
+              <%= link_to "商品一覧", custoners_sweetsindex__path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item ml-4 border rounded">
+              <%= link_to "新規登録", new_custoer_registration_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item ml-4 border rounded">
+              <%= link_to "ログイン", new_custoer_session_path, class: 'nav-link text-dark' %>
+            </li>       
           <% end %>
         </ul>
       </div>
+     </nav>
     </header>
     
     <main class="mb-auto">
