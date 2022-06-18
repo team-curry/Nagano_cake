@@ -9,8 +9,35 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
+<!--<管理者側＞-->
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="container">
+        <a class ="navbar-brand p-3" href="/"><%= image_tag("nagano-cake.png")%></a>
+        <ul class="navbar-nav ml-auto">
+          <% if customer_signed_in? %>
+            <li class ="nav-item">商品一覧</li>
+            <li class ="nav-item">会員一覧</li>
+            <li class ="nav-item">注文履歴一覧</li>
+            <li class ="nav-item">ジャンル一覧</li>
+            <!--<li class ="nav-item">ログアウト</li>-->
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+            </li>
+          <% else %>
+            <li class="nav-item">About</li>
+            <li class="nav-item">商品一覧</li>
+            <li class="nav-item">新規登録</li>
+            <li class="nav-item">ログイン</li>
+          <% end %>
+        </ul>
+      </div>
+    </header>
+  　<main class="mb-auto">
+      <%= yield %>
+  　</main>
+    <footer></footer>
   </body>
 </html>

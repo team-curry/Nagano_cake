@@ -1,7 +1,24 @@
 Rails.application.routes.draw do
-
-
+  namespace :customers do
+  
+  resources:homes
+  resources:customers
+  resources:sweets
+  resources:cart_items
+  resources:orders
+  resources:addresses
+  
+ end
+  
   namespace :admins do
+    
+  resources:homes
+  resources:customers
+  resources:sweets
+  resources:orders
+  resources:order_details
+  resources:genres
+  
 
   end
   # devise_for :customers
