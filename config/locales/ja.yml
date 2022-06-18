@@ -1,0 +1,6 @@
+ja:
+  enums:
+    user:
+      role:
+        customer: 会員
+        admin: 管理者
