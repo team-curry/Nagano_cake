@@ -1,24 +1,28 @@
 Rails.application.routes.draw do
   namespace :customers do
-  
+    
+  get "/", to: "homes#top"
+
   resources:homes
   resources:customers
   resources:sweets
   resources:cart_items
   resources:orders
   resources:addresses
-  
+
  end
-  
+
   namespace :admins do
     
-  resources:homes
+  get "/", to: "homes#top"
+
+  resources:homes, only: [:top, :about]
   resources:customers
   resources:sweets
   resources:orders
   resources:order_details
   resources:genres
-  
+
 
   end
   # devise_for :customers
