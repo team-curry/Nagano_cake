@@ -6,36 +6,53 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <!--<会員側＞-->
 
-    <header>
-      <div class="container">
-        <a class ="navbar-brand p-3" href="/"><%= image_tag("nagano-cake.png")%></a>
-        <ul class="navbar-nav ml-auto">
-          <% if customer_signed_in? %>
-            <li class ="nav-item">マイページ</li>
-            <li class ="nav-item">商品一覧</li>
-            <li class ="nav-item">カート</li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
-            </li>
-          <% else %>
-            <li class="nav-item">About</li>
-            <li class="nav-item">商品一覧</li>
-            <li class="nav-item">新規登録</li>
-            <li class="nav-item">ログイン</li>
-          <% end %>
-        </ul>
-      </div>
+  <body class="d-flex flex-column vh-100">
+    <header class="border-bottom border-dark">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class ="navbar-brand" href="/"><%= image_tag "naganocake.png", class: "logo" %></a>
+          <ul class="navbar-nav ml-auto navbar-expand-lg">
+            <% if customer_signed_in? %>
+              <li class ="nav-item border rounded">
+                <%= link_to "マイページ", customers_customers_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class ="nav-item ml-4 border rounded">
+                <%= link_to "商品一覧", customers_sweets_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class ="nav-item ml-4 border rounded">
+                <%= link_to "カート", customers_cart_items_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-4 border rounded">
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+              </li>
+            <% else %>
+              <li class="nav-item ml-4 border rounded">
+                <%= link_to "About", customers_homes_about_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-4 border rounded">
+                <%= link_to "商品一覧", customers_sweets_index__path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-4 border rounded">
+                <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-4 border rounded">
+                <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <main class="mb-auto">
       <%= yield %>
     </main>
-    <footer></footer>
+    <footer class="border-top border-dark"></footer>
   </body>
 </html>
