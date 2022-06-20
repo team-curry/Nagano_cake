@@ -14,3 +14,13 @@
  footer {
   height: 100px;
  }
+ 
+ .price_field {
+   position: relative;
+   &::after {
+     content: "円";
+     position: absolute;
+     right: -5px;
+     bottom: 0;
+   }
+ }
