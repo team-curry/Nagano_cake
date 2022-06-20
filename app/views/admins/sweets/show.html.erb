@@ -1,0 +1,29 @@
+<div
+<h5>商品詳細</h5>
+
+  <% if @sweet.image.attached? %>
+    <%= image_tag @sweet.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+  
+  <h6>商品名</h6>
+  <p><%= @sweet.name %></p>
+  
+  <h6>商品説明</h6>
+  <p><%= @sweet.explanation %></p>
+  
+  <h6>ジャンル</h6>
+  <p><%= @genre.name %></p>
+  
+  <h6>税込価格(税抜価格)</h6>
+  <p><%= @sweet.add_tax_price.to_s(:dalimited) %>(<%= @sweet.price %>)円</p>
+  
+  <h6>販売ステータス</h6>
+  <% if @sweet.is_sale_status == true %>
+   <p>販売中</p>
+  <% else %>
+   <p>販売停止中</p>
+  <% end %>
+  
+  <%= link_to "編集する", edit_admins_sweet_path(@sweet.id) %>

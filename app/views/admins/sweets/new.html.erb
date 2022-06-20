@@ -1,0 +1,20 @@
+<h5>商品新規登録</h5>
+<%= form_with model: @sweet, url:admins_sweets_path, method: :post do |f| %>
+<h6>商品画像</h6>
+<%= f.file_field :image, accept: "image/*" %>
+<h6>商品名</h6>
+<%= f.text_field :name %>
+<h6>商品説明</h6>
+<%= f.text_area :explanation %>
+<h6>ジャンル</h6>
+<%= f.collection_select :genre_id, Genre.all, :id, :name %>
+
+<h6>税抜価格</h6>
+<%= f.number_field :price %>
+
+<h6>販売ステータス</h6>
+<%= f.radio_button :is_sale_status, "true" %>販売中 <%= f.radio_button :is_sale_status, "false" %>販売停止中
+
+<%= f.submit '新規登録' %>
+<% end %>
+  
