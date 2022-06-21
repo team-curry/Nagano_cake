@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   namespace :admins do
 
   root to: "homes#top"
-  get "/admin/", to: "homes#top"
+  get "/", to: "homes#top"
 
   resources:homes, only: [:top, :about]
   resources:customers

@@ -1,6 +1,6 @@
 class CartItem < ApplicationRecord
   
-belongs_to :
+belongs_to :customer
 belongs_to :sweet
 
 def sum_price
