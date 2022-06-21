@@ -4,3 +4,17 @@ ja:
       role:
         customer: 会員
         admin: 管理者
+        
+ja:
+  enums:
+    order:
+      status:
+        waiting_for_payment: "入金待ち"
+        payment_confirmation: "入金確認"
+        in_production: "製作中"
+        ready_to_ship: "発送済み"
+        
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
