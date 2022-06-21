@@ -12,7 +12,7 @@
               <th>ステータス</th>
             </tr>
           </thead>
-          <% @customer.each do |customer| %>
+          <% @customers.each do |customer| %>
           <tbody>
             <tr>
               <td><%= customer.id %></td>
@@ -29,7 +29,7 @@
           </tbody>
           <% end %>
         </table>
-        <%= paginate @customer %>
+        <%= paginate @customers %>
       </div>
     </div>
   </div>
