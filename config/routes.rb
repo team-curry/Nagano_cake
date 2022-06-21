@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :customers do
-    
+
   get "/", to: "homes#top"
 
   resources:homes
@@ -13,7 +13,8 @@ Rails.application.routes.draw do
  end
 
   namespace :admins do
-    
+
+  root to: "homes#top"
   get "/", to: "homes#top"
 
   resources:homes, only: [:top, :about]
