@@ -17,6 +17,11 @@ class Admins::SweetsController < ApplicationController
   @genre = @sweet.genre
  end
  
+ def index
+  @sweets = Sweet.page(params[:page])
+  @genre = Genre.page(params[:page])
+ end 
+ 
  def edit
   @sweet = Sweet.find(params[:id])
  end 
