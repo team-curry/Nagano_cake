@@ -17,6 +17,16 @@ class Admins::SweetsController < ApplicationController
   @genre = @sweet.genre
  end
  
+ def edit
+  @sweet = Sweet.find(params[:id])
+ end 
+ 
+ def update
+  @sweet = Sweet.find(params[:id])
+  @sweet.update(sweet_params)
+  redirect_to admins_sweet_path(@sweet.id)
+ end 
+ 
  private
  
  def sweet_params
