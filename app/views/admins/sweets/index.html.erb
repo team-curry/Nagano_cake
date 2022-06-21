@@ -1,0 +1,43 @@
+<div class="container">
+ <div class="row mt-4 d-flex justify-content-between">
+  <h5 class="col-3 text-center bg-light">商品一覧</h5>
+  <div class="">
+   <%= link_to new_admins_sweet_path do %>
+    <i class="fas fa-plus fa-2x icon"></i>
+   <% end %>
+  </div>
+ </div>
+ <div class="mt-4 justify-content-center">
+  <table class="table">
+   <thead class="thead-light">
+    <tr>
+     <th>商品ID</th>
+     <th>商品名</th>
+     <th>税抜価格</th>
+     <th>ジャンル</th>
+     <th>ステータス</th>
+    </tr>
+   </thead>
+   <tbody>
+    <% @sweets.each do |sweet| %>
+     <tr>
+      <td><%= sweet.id %></td>
+      <td><%= link_to sweet.name, admins_sweet_path(sweet.id) %></td>
+      <td><%= sweet.price %></td>
+      <td><%= sweet.genre.name %></td>
+      <td>
+       <% if sweet.is_sale_status == true %>
+        <p class="text-success">販売中</p>
+       <% else %>
+        <p class="text-secondary">販売停止中</p>
+       <% end %>
+      </td>
+     </tr>
+    <% end %>
+   </tbody>
+  </table>
+ </div>
+ <div class="mx-auto">
+  <%= paginate @sweets %>
+ </div>
+</div>
