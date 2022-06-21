@@ -14,7 +14,7 @@
     <tbody>
       <tr>
         <td><%= link_to l order.created_at,order, class: "order_#{order.id}" %></td>
-        <td><%= order.customer.first_name %><%= order.customer.last_name %></td>
+        <td><%= order.customer.last_name %><%= order.customer._name %></td>
         <td><%= order.quantity.all.sum %></td>
         <td><%= order.status %></td>
       </tr>
