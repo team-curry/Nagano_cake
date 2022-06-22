@@ -18,8 +18,8 @@ class Admins::SweetsController < ApplicationController
  end
  
  def index
-  @sweets = Sweet.page(params[:page]).per(5)
-  @genre = Genre.page(params[:page]).per(5)
+  @sweets = Sweet.page(params[:page])
+  @genre = Genre.page(params[:page])
  end 
  
  def edit

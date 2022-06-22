@@ -2,7 +2,7 @@
   <div class="row d-flex flex-column bd-highlight mb-3">
     <h5 class="col-4 text-center mt-5 bg-light">管理者ログイン</h5>
     <div class="col-10 text-left mt-5">
-      <%= form_with model: @admins, url:admin_session_path do |f| %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="row">
         <p class="col-md-4">メールアドレス</p>
         <div class="col-md-6">
