@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get "/", to: "homes#top"
 
   resources:homes, only: [:top, :about]
-  resources:customers
+  resources:customers, only: [:index, :show, :edit, :update]
   resources:sweets
   resources:orders
   resources:order_details
