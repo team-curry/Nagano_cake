@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources:sweets
   resources:cart_items
   resources:orders
-  resources:addresses
+  resources:addresses, only: [:index, :create, :edit, :update, :destroy]
 
  end
 
