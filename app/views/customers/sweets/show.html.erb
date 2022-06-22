@@ -1,0 +1,25 @@
+<div class="container">
+ <div class="row justify-content-center">
+  <div class="">
+   <% if @sweet.image.attached? %>
+    <%= image_tag @sweet.image, size: "200x150" %>
+   <% else %>
+    <%= image_tag 'no_image', size: "200x150" %>
+   <% end %>
+  </div>
+  <div class="">
+   <h2 class="font-weight-bold"><%= @sweet.name %></h2>
+   <p class="font-weight-bold"><%= @sweet.explanation %></p>
+   <p class="font-weight-bold">¥<%= @sweet.add_tax_price.to_s(:delimited) %>(税込)</p>
+   <div class="row">
+    <%= form_with model: @CartItem, url:customers_cart_items_path, method: :post do |f| %>
+     <%= f.hidden_field :image, :value => @sweet.image %>
+     <%= f.hidden_field :name, :value => @sweet.name %>
+     <%= f.hidden_field :price, :value => @sweet.price %>
+     <%= f.select :quantity, *[1..10] %>
+     <%= f.submit "カートに入れる", class: "btn btn-success" %>
+    <% end %>
+    </div>
+   </div>
+ </div>
+</div>

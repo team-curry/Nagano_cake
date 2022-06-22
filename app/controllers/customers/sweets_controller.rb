@@ -9,4 +9,9 @@ class Customers::SweetsController < ApplicationController
    @sweet = Sweet.find(params[:id])
   end
   
+  private 
+ 
+  def sweet_params
+  params.require(:sweet).permit(:genre_id, :name, :explanation, :is_sale_status, :price, :image)
+  end
 end
