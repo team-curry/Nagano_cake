@@ -11,6 +11,9 @@ Rails.application.routes.draw do
      collection do
       get 'complete'
      end
+     collection do
+      post 'confirm'
+    end
   end
   resources:addresses
 
