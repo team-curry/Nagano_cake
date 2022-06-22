@@ -13,7 +13,7 @@ Rails.application.routes.draw do
      end
      collection do
       post 'confirm'
-    end
+     end
   end
   resources:addresses
 
