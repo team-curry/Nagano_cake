@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources:customers
   resources:sweets
   resources:cart_items
-  resources:orders
+  resources:orders do
+     collection do
+      get 'complete'
+     end
+  end
   resources:addresses
 
  end

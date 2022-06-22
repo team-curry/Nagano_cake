@@ -5,4 +5,12 @@ layout "customers"
     
   end
   
+  def create
+    redirect_to action: :complete
+  end
+  
+  def complete
+    
+  end
+  
 end
