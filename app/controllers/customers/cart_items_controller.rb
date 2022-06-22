@@ -8,7 +8,8 @@ layout "customers"
   end
   
   def create
-    @cart_item ||= current_cart_item.cart_items.build(sweet_id: params[:sweet_id])
+     
+    @cart_item ||= current_customer.cart_items.build(sweet_id: params[:sweet_id])
     @cart_item.quantity += params[:quantity].to_i
     if  @cart_item.save
       flash[:notice] = '商品が追加されました。'
