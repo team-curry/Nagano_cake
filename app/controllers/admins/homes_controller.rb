@@ -2,8 +2,7 @@ class Admins::HomesController < ApplicationController
   layout "admins"
 
   def top
-   @order = OrderDetail.page(params[:page])
-   @tatal = OrderDetail.all.sum(:quantity)
+   @orders = Order.page(params[:page]).per(10)
   end
 
   def about
@@ -12,6 +11,12 @@ class Admins::HomesController < ApplicationController
 end
 
   private
-    def order_detail_params
-    	params.require(:order_detail).permit(:quantity, :created_at, ordered_attributes:[:id, :status, :customer_id])
-    end
+  
+
+  def order_params
+    params.require(:order).permit(:order_status)
+  end
+
+  def order_detail_params
+    params.require(:order_detail).permit(:item_status)
+  end

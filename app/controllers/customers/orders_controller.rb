@@ -7,24 +7,22 @@ def new
 end
 
 def create
-  cart_items = CartItem.all
-
   @order = current_customer.orders.new(order_params)
+  @order.customer_id = current_customer.id
+  cart_items = current_customer.cart_items.all
 
-  if @order.save
+  if @order.save!
 
     cart_items.each do |cart|
 
-      order_item = OrderItem.new
-      order_item.item_id = cart.item_id
-      order_item.order_id = @order.id
-      order_item.order_quantity = cart.quantity
+      order_detail = OrderDetail.new
+      order_detail.sweet_id = cart.sweet_id
+      order_detail.order_id = @order.id
+      order_detail.quantity = cart.quantity
 
-      order_item.order_price = cart.item.price
-
-      order_item.save
+      order_detail.save
     end
-    redirect_to customers_orders_complete_path
+    redirect_to complete_customers_orders_path
     cart_items.destroy_all
 
   else
@@ -36,11 +34,13 @@ end
 
 def confirm
   @order = Order.new(order_params)
+  
+  if params[:order][:select_addresses] == "1"
+    @order.post_code = current_customer.post_code
+    @order.addresses = current_customer.address
+    @order.name = current_customer.last_name + current_customer.first_name
 
-  if params[:order][:address_number] == "1"
-
-    @order.address = current_customer.customer_address
-  elsif params[:order][:address_number] == "2"
+  elsif params[:order][:select_addresses] == "2"
 
     if Address.exists?(name: params[:order][:registered])
 
@@ -50,30 +50,50 @@ def confirm
       render :new
 
     end
-  elsif params[:order][:address_number] == "3"
-
-    address_new = current_customer.addresses.new(address_params)
+  elsif params[:order][:select_addresses] == "3"
+    address_new = current_customer.addresses.new(addresses_params)
     if address_new.save
-    else
       render :new
-
+    else
+      redirect_to customers_cart_items_path
     end
-  # else
-  #   redirect_to customers_cart_items_path
+
   end
   @cart_items = CartItem.all
   @total = @cart_items.inject(0) { |sum, sweet| sum + sweet.subtotal }
-
 end
+
+ def index
+    @orders = Order.where(customer_id:current_customer)
+ end
+
+
+
+
+  def order_status_update
+    order = Order.find(params[:id])
+    order.update(order_params)
+    redirect_to admin_order_path(order)
+  end
+
+  def item_status_update
+    order_detail = OrderDetail.find(params[:id])
+    order_detail.update(order_detail_params)
+    redirect_to admin_order_path(order_detail.order_id)
+  end
 
 private
 
 def order_params
-  params.require(:order).permit(:name, :addresses, :total_payment)
+  params.require(:order).permit(:customer_id, :post_code, :status, :fee, :payment_method, :name, :addresses, :total_payment)
 end
 
+  def order_detail_params
+    params.require(:order_detail).permit(:_status)
+  end
+
 def address_params
-  params.require(:order).permit(:name, :address)
+  params.require(:order).permit(:name, :addresses, :post_code)
 end
 
 end
