@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   namespace :customers do
 
   get "/", to: "homes#top"
+  get "/about", to: "homes#about"
 
-  resources:homes
   resources:customers
   resources:sweets
   resource:cart_items do
