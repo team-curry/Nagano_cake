@@ -15,12 +15,12 @@ ja:
         ready_to_ship: "発送済み"
         
 ja:
-  enums:
-    order:
-      payment_method:
+  enums: 
+    order: 
+      payment_method: 
         credit: "クレジットカード"
         bank: "銀行振込"
-        
+      
 ja:
   time:
     formats:

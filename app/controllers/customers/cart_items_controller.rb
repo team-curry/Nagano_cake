@@ -3,23 +3,23 @@ layout "customers"
  before_action :authenticate_customer!
 
   def show
-   @cart_item = CartItem.all
+   @cart_item = current_customer.cart_items
    @total = @cart_item.inject(0) { |sum, sweet| sum + sweet.subtotal }
   end
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
 
 
-    if CartItem.find_by(sweet_id: params[:sweet_id]).present?
-      cart_item = current_customer.cart_sweets.find_by(sweet_id: params[:sweet_id])
-      cart_item.quantity += params[:cart_sweet][:quantity].to_i
-      cart_item.save
+   cart_item = current_customer.cart_items.find_by(sweet_id: params[:cart_item][:sweet_id])
+    if cart_item.present?
+      cart_item.quantity += params[:cart_item][:quantity].to_i
+    else
+      cart_item = CartItem.new(cart_item_params)
+      cart_item.customer_id = current_customer.id
     end
 
 
-    if  @cart_item.save
+    if  cart_item.save
       flash[:notice] = '商品が追加さました。'
       redirect_to customers_cart_items_path
     else
@@ -38,14 +38,14 @@ layout "customers"
   end
 
   def destroy
-    cart_item = CartItem.find(params[:cart_item])
+    cart_item = current_customer.cart_items.find_by(sweet_id: params[:sweet_id])
     # binding.pry
-    if cart_item.destroy(sweet_id: params[:sweet_id])
+    if cart_item.destroy
       flash[:notice] = 'カート内のギフトが削除されました'
     else
       flash[:alert] = '削除に失敗しました'
     end
-    redirect_to cart_item_path
+    redirect_to customers_cart_items_path
   end
 
   def destroy_all

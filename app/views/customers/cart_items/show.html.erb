@@ -37,7 +37,7 @@
               <%= cart_item.subtotal %>
               <%= hidden_field_tag "cart_item.subtotal" %>
             </td>
-            <td><%= link_to '削除する', customers_cart_items_path(@cart_item), method: :delete, class: "btn btn-sm btn-danger"%></td>
+            <td><%= link_to '削除する', customers_cart_items_path(sweet_id: cart_item.sweet), method: :delete, class: "btn btn-sm btn-danger"%></td>
           </tr>
         <% end %>
         </tbody>
