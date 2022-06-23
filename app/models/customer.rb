@@ -4,12 +4,11 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  before_create :create_name
-  def create_name
-    self.name = "#{last_name} #{first_name}"
+  def full_name
+    self.last_name + " " + self.first_name
   end
 
-  validates :is_deleted, inclusion: { in: [true, false] }
+
 
   has_many :addresses
   has_many :cart_items
