@@ -3,6 +3,7 @@ class Admins::HomesController < ApplicationController
 
   def top
    @orders = Order.page(params[:page]).per(10)
+
   end
 
   def about
@@ -11,7 +12,7 @@ class Admins::HomesController < ApplicationController
 end
 
   private
-  
+
 
   def order_params
     params.require(:order).permit(:order_status)

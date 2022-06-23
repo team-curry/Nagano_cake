@@ -1,6 +1,15 @@
 class Customers::OrdersController < ApplicationController
 layout "customers"
 
+def index
+  @orders = Order.where(customer_id:current_customer)
+end
+
+def show
+  @order = Order.find(params[:id])
+  @order_details = @order.order_details
+  @order.fee = 800
+end
 
 def new
   @order = Order.new
@@ -62,10 +71,6 @@ def confirm
   @cart_items = CartItem.all
   @total = @cart_items.inject(0) { |sum, sweet| sum + sweet.subtotal }
 end
-
- def index
-    @orders = Order.where(customer_id:current_customer)
- end
 
 
 
