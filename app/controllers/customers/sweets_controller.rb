@@ -7,6 +7,7 @@ class Customers::SweetsController < ApplicationController
   
   def show
    @sweet = Sweet.find(params[:id])
+   @customr = current_customer.id
   end
   
   private 

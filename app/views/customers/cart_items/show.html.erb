@@ -1,0 +1,76 @@
+<div class="mx-auto" style="width:80%;">
+  <div class= "cntainer">
+    <div class="row mt-5 mb-3" style="width:100%">
+      <h4 class="shadow-none bg-light rounded ml-4 pl-4">ショッピングカート</h4>
+      <div style="margin-left: auto;;">
+          <%=  link_to 'カートを空にする',  destroy_all_customers_cart_items_path, class: "btn btn-sm btn-danger", method: :delete %>
+      </div>
+    </div>
+    <%= form_for customers_cart_items_path, method: :patch do |f| %>
+     <table class="table table-bordered">
+       <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <% @cart_item.each do |cart_item| %>
+          <tr>
+            <td>
+              <%= image_tag cart_item.sweet.image, size: "50x50" %>
+              <%= cart_item.sweet.name %>
+            </td>
+            <td>
+              <%= cart_item.sweet.add_tax_price %>
+              <%= hidden_field_tag :sweet_price, cart_item.sweet.price %>
+            </td>
+            <td>
+              <%= number_field_tag "cart_item.quantity]", cart_item.quantity, in: 1..10 %>
+              <%= hidden_field_tag "sweet_id[#{cart_item.id}]", cart_item.sweet_id %>
+            </td>
+            <td>
+              <%= cart_item.subtotal %>
+              <%= hidden_field_tag "cart_item.subtotal" %>
+            </td>
+            <td><%= link_to '削除する', customers_cart_items_path(@cart_item), method: :delete, class: "btn btn-sm btn-danger"%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+        <div class="row">
+          <div class="ml-5 col-md-6">
+            <%= link_to '買い物を続ける', customers_sweets_path, class: "btn btn-sm btn-primary" %>
+          </div>
+
+        	<div style="margin-left: auto;">
+        		<table class="table table-bordered">
+          			<th style="background:#dad7d7; border: 1px solid #fff;">合計金額</th>
+          			<th><%= @total %></th></tr>
+        		</table>
+
+      		<div class="pull-right">
+      			<%= f.submit '再計算する', class:"btn btn-default", data: {toggle:"tooltip", placement:"left"}, title:"数量を変更したらクリック" %>
+      		</div>
+      <% end %>
+
+      	</div>
+
+      </div>
+
+
+          <div style="text-align:center;">
+            	<% if @cart_item.blank? %>
+  	          	<% else %>
+                  <%= link_to '情報入力に進む', new_customers_order_path, class: "btn btn-sm btn-success" %>
+              <% end %>
+
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,11 +1,11 @@
 class CartItem < ApplicationRecord
   
-belongs_to :order  
 belongs_to :customer
 belongs_to :sweet
 
-def sum_price
-  sweet.taxin_price*quantity
+def subtotal
+    sweet.add_tax_price * quantity
 end
+
   
 end
