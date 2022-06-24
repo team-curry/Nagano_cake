@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   resources:order_details
   resources:genres
 
-
+  patch '/orders/:id/status' => 'orders#status_update', as: "status" # 受注ステータス
+  patch '/orders/:id/making_status' => 'orders#making_status_update', as: "making_status" # 製作ステータス
   end
   # devise_for :customers
   # devise_for :admins

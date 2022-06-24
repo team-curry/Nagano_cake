@@ -69,7 +69,7 @@ def confirm
 
   end
   @cart_items = CartItem.all
-  @total = @cart_items.inject(0) { |sum, sweet| sum + sweet.subtotal }
+  @total = @cart_items.inject(0) { |sum, sweet| sum + sweet.subtotalprice }
 end
 
 

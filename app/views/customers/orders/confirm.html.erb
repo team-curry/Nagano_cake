@@ -61,7 +61,9 @@
           <%= f.hidden_field :name %>
           <%= f.hidden_field :addresses %>
           <%= f.hidden_field :total_payment, value: @total %>
-
+          <%= f.hidden_field :payment_method %>
+          <%= f.hidden_field :fee, value: 800 %>
+          <%= f.hidden_field :status, value: "payment_confirmation" %>
       </div>
 
   </div>

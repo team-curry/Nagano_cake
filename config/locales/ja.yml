@@ -9,7 +9,8 @@ ja:
         waiting_for_payment: "入金待ち"
         payment_confirmation: "入金確認"
         in_production: "製作中"
-        ready_to_ship: "発送済み"
+        ready_to_ship: "発送準備中"
+        shipped: "発送済み"
       payment_method:
         credit: "クレジットカード"
         bank: "銀行振込"
