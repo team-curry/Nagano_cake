@@ -2,7 +2,7 @@ class Customers::OrdersController < ApplicationController
 layout "customers"
 
 def index
-  @orders = Order.where(customer_id:current_customer)
+  @orders = Order.where(customer_id:current_customer).order("created_at DESC")
 end
 
 def show
