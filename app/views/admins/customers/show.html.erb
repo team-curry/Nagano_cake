@@ -1,13 +1,12 @@
 <div class="container">
   <div class="row d-flex flex-column bd-highlight mb-3">
-    <h5 class="col-3 text-center mt-5 bg-light"><%= @customer.name %>さんの会員詳細</h5>
+    <h5 class="col-3 text-center mt-5 bg-light"><%= @customer.full_name %>さんの会員詳細</h5>
     <div class="text-left mt-4">
       <div class="row">
-        <% @customer.each do |customer| %>
         <p class="col-md-3">会員ID</p>
         <div class="col-md-7">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
               <%= @customer.id %>
             </div>
           </div>
@@ -15,7 +14,7 @@
         <p class="col-md-3">氏名</p>
         <div class="col-md-7">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
               <%= @customer.last_name %>　<%= @customer.first_name %>
             </div>
           </div>
@@ -23,7 +22,7 @@
         <p class="col-md-3">フリガナ</p>
         <div class="col-md-7">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
               <%= @customer.last_name_kana %>　<%= @customer.first__name_kana %>
             </div>
           </div>
@@ -31,7 +30,7 @@
         <p class="col-md-3">郵便番号</p>
         <div class="col-md-7">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
               <%= @customer.post_code %>
             </div>
           </div>
@@ -39,7 +38,7 @@
         <p class="col-md-3">住所</p>
         <div class="col-md-7">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
               <%= @customer.address %>
             </div>
           </div>
@@ -47,7 +46,7 @@
         <p class="col-md-3">電話番号</p>
         <div class="col-md-7">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
               <%= @customer.phone_number %>
             </div>
           </div>
@@ -55,7 +54,7 @@
         <p class="col-md-3">メールアドレス</p>
         <div class="col-md-7">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
               <%= @customer.email %>
             </div>
           </div>
@@ -63,7 +62,7 @@
         <p class="col-md-3">会員ステータス</p>
         <div class="col-md-7">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
               <% if @customer.is_deleted == false %>
                <p class="text-success">有効</p>
               <% else %>
@@ -72,19 +71,16 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-md-2">
-                <%= f.submit "編集する", class: "btn btn-sm btn-success border rounded" %>
-              </div>
-              <div class="col-md-5">
-                <%= f.submit "注文履歴一覧を見る", class: "btn btn-sm btn-info border rounded" %>
-              </div>
+        <div class="">
+          <div class="">
+            <div class="row mx-auto">
+                <%= link_to "編集する", edit_admins_customer_path, class: "btn btn-sm btn-success border rounded mr-5" %>
+              
+                <%= link_to "注文履歴一覧を見る", admins_path, class: "btn btn-sm btn-info border rounded" %>
+             
             </div>
           </div>
         </div>
-        <% end %>
       </div>
     </div>
   </div>

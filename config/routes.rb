@@ -3,8 +3,11 @@ Rails.application.routes.draw do
 
   get "/", to: "homes#top"
   get "/about", to: "homes#about"
-
-  resources:customers
+  
+  get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+  patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+  
+  resources:customers 
   resources:sweets
   resource:cart_items do
     collection do
