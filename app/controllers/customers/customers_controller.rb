@@ -18,4 +18,11 @@ class Customers::CustomersController < ApplicationController
     end
   end
 
+  def withdrawal
+    @customer = Customer.find(params[:id])
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+
 end

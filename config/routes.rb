@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   namespace :customers do
 
+  root to: "homes#top"
   get "/", to: "homes#top"
   get "/about", to: "homes#about"
 
-  resources:customers
+  resources:customers, only: [:show, :edit, :update]
+  get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+  patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
   resources:sweets
   resource:cart_items do
     collection do
@@ -19,7 +22,7 @@ Rails.application.routes.draw do
       post 'confirm'
      end
   end
-  resources:addresses
+  resources:addresses, only: [:index, :create, :edit, :update, :destroy]
 
  end
 
@@ -29,7 +32,7 @@ Rails.application.routes.draw do
   get "/", to: "homes#top"
 
   resources:homes, only: [:top, :about]
-  resources:customers
+  resources:customers, only: [:index, :show, :edit, :update]
   resources:sweets
   resources:orders
   resources:order_details
