@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   namespace :customers do
 
-  root to: "homes#top"
   get "/", to: "homes#top"
   get "/about", to: "homes#about"
   
