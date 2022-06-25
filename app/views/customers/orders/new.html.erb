@@ -30,7 +30,7 @@
         <div class="ml-4">
           <%= f.collection_select :addresses_id, Address.all, :id, :addresses, include_blank: "選択して下さい", class: "w-100" %><br>
         </div>
-          <%= f.radio_button :select_addresses, "3" %><br>
+          <%= f.radio_button :select_addresses, "3" %>
           <%= f.label :addresses_3, "新しいお届け先" %>
         <div style = "width:100%;">
            <%= f.label :post_code, "郵便番号（ハイフンなし）", class: "col-md-4" %>

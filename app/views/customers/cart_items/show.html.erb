@@ -10,7 +10,7 @@
      <table class="table table-bordered">
        <thead class="thead-light">
           <tr>
-            <th>商品名</th>
+            <th class="col-4">商品名</th>
             <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
@@ -26,15 +26,19 @@
               <%= cart_item.sweet.name %>
             </td>
             <td>
-              <%= cart_item.sweet.add_tax_price %>
+              <%= cart_item.sweet.add_tax_price.to_s(:delimited) %>
               <%= hidden_field_tag :sweet_price, cart_item.sweet.price %>
             </td>
             <td>
-              <%= number_field_tag "cart_item.quantity]", cart_item.quantity, in: 1..10 %>
-              <%= hidden_field_tag "sweet_id[#{cart_item.id}]", cart_item.sweet_id %>
+   <!--数量追加機能がわからない-->
+     
+               <%= number_field_tag "cart_item.quantity", cart_item.quantity, in: 1..10 %>
+               <%= hidden_field_tag "quantity[#{cart_item.id}]", cart_item.quantity %>
+               <%= f.submit "変更", class:"btn btn-success" %>
+    <!---->
             </td>
             <td>
-              <%= cart_item.subtotal %>
+              <%= cart_item.subtotal.to_s(:delimited) %>
               <%= hidden_field_tag "cart_item.subtotal" %>
             </td>
             <td><%= link_to '削除する', customers_cart_items_path(sweet_id: cart_item.sweet), method: :delete, class: "btn btn-sm btn-danger"%></td>
@@ -51,12 +55,8 @@
         	<div style="margin-left: auto;">
         		<table class="table table-bordered">
           			<th style="background:#dad7d7; border: 1px solid #fff;">合計金額</th>
-          			<th><%= @total %></th></tr>
+          			<th><%= @total.to_s(:delimited) %></th></tr>
         		</table>
-
-      		<div class="pull-right">
-      			<%= f.submit '再計算する', class:"btn btn-default", data: {toggle:"tooltip", placement:"left"}, title:"数量を変更したらクリック" %>
-      		</div>
       <% end %>
 
       	</div>
