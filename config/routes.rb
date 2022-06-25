@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   resources:customers
   resources:sweets
-  resources:cart_items
+  resource:cart_items do
+    collection do
+      delete 'destroy_all'
+    end
+  end
   resources:orders do
      collection do
       get 'complete'
@@ -25,13 +29,14 @@ Rails.application.routes.draw do
   get "/", to: "homes#top"
 
   resources:homes, only: [:top, :about]
-  resources:customers, only: [:index, :show, :edit, :update]
+  resources:customers
   resources:sweets
   resources:orders
   resources:order_details
   resources:genres
 
-
+  patch '/orders/:id/status' => 'orders#status_update', as: "status" # 受注ステータス
+  patch '/orders/:id/making_status' => 'orders#making_status_update', as: "making_status" # 製作ステータス
   end
   # devise_for :customers
   # devise_for :admins
