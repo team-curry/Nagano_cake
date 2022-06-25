@@ -1,6 +1,6 @@
 class Customers::CustomersController < ApplicationController
   layout "customers"
-  
+
   def show
    @customer = Customer.find(params[:id])
   end
@@ -32,6 +32,4 @@ class Customers::CustomersController < ApplicationController
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first__name_kana, :post_code, :address, :phone_number, :is_deleted, :email)
   end
   
-   
-     
 end

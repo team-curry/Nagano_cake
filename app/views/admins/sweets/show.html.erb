@@ -10,7 +10,7 @@
     <% end %>
     </div>
    </div>
-   
+
    <div class=" p-1 flex-fill bd-highlight">
      <div class="row">
       <h6 class="col-4">商品名</h6>
@@ -18,28 +18,28 @@
        <p><%= @sweet.name %></p>
       </div>
      </div>
-     
+
      <div class="row">
       <h6 class="col-4">商品説明</h6>
       <div class="col-8">
        <p><%= @sweet.explanation %></p>
       </div>
      </div>
-     
+
      <div class="row">
       <h6 class="col-4">ジャンル</h6>
       <div class="col-8">
        <p><%= @genre.name %></p>
       </div>
      </div>
-     
+
      <div class="row">
       <h6 class="col-4">税込価格</br>(税抜価格)</h6>
       <div class="col-8">
        <p><%= @sweet.add_tax_price.to_s(:dalimited) %>(<%= @sweet.price %>)円</p>
       </div>
      </div>
-     
+
      <div class="row w-100">
       <h6 class="col-4">販売ステータス</h6>
       <div class="col-8">
