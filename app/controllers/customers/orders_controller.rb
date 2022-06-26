@@ -49,7 +49,7 @@ def confirm
     @order.addresses = current_customer.address
     @order.name = current_customer.last_name + current_customer.first_name
 
-  elsif params[:order][:select_addresses] == "2"
+  elsif params[:order][:select_addresses] == "2" #既存のお届け先
 
     if Address.exists?(name: params[:order][:registered])
 
@@ -59,8 +59,8 @@ def confirm
       render :new
 
     end
-  elsif params[:order][:select_addresses] == "3"
-    address_new = current_customer.addresses.new(addresses_params)
+  elsif params[:order][:select_addresses] == "3"  #新しいお届け先
+    address_new = current_customer.addresses.new(address_params)
     if address_new.save
       render :new
     else
@@ -71,9 +71,6 @@ def confirm
   @cart_items = CartItem.all
   @total = @cart_items.inject(0) { |sum, sweet| sum + sweet.subtotalprice }
 end
-
-
-
 
   def order_status_update
     order = Order.find(params[:id])
@@ -98,7 +95,7 @@ end
   end
 
 def address_params
-  params.require(:order).permit(:name, :addresses, :post_code)
+  params.require(:order).permit(:name, :address, :post_code)
 end
 
 end
