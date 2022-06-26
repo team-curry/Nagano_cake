@@ -61,6 +61,6 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   def after_sign_up_path_for(resource)
-    customers_customer_path(current_customer.id)
+    customers_customer_path(current_customer.id), flash[:notice] = 'ようこそ<%= current_customer.name %>さん' 
   end
 end
