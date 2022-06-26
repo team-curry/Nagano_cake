@@ -8,8 +8,12 @@ class Admins::SweetsController < ApplicationController
 
  def create
   @sweet = Sweet.new(sweet_params)
-  @sweet.save
-  redirect_to admins_sweet_path(@sweet.id)
+  if @sweet.save
+   redirect_to admins_sweet_path(@sweet.id)
+  else
+   render :new
+  end 
+  
  end
 
  def show

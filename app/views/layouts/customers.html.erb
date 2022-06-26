@@ -19,6 +19,7 @@
           <a class ="navbar-brand" href="/customers"><%= image_tag "naganocake.png", class: "logo" %></a>
           <ul class="navbar-nav ml-auto navbar-expand-lg">
             <% if customer_signed_in? %>
+            　<p class="text-center mr-5">ようこそ<%= current_customer.last_name %>さん!</p>
               <li class ="nav-item border rounded">
                 <%= link_to "マイページ", customers_customer_path(current_customer.id), class: 'nav-link text-dark' %>
               </li>
