@@ -1,90 +1,77 @@
 <div class="container">
-  <div class="row d-flex flex-column bd-highlight mb-3">
-    <h5 class="col-3 text-center mt-5 bg-light"><%= @customer.name %>さんの会員情報編集</h5>
-    <div class="text-left mt-4">
+  <div class="row d-flex flex-column bd-highlight">
+    <h5 class="col-4 text-center mt-3 bg-light"><%= @customer.full_name %>さんの会員情報編集</h5>
+    <div class="text-left mt-3">
+      <%= form_with model: @customer, url: admins_customer_path(@customer.id), method: :patch do |f| %>
       <div class="row">
-        <%= form_with model: @customer do |f| %>
-        <p class="col-md-3">会員ID</p>
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-2">
-              <%= @customer.id %>
-            </div>
-          </div>
-        </div>
-        <p class="col-md-3">氏名</p>
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-2">
-              <%= f.text_field :last_name, autofocus: true, class: "border-color black rounded" %>
-            </div>
-            <div class="col-md-4">
-              <%= f.text_field :first_name, class: "border-color black rounded" %>
-            </div>
-          </div>
-        </div>
-        <p class="col-md-3">フリガナ</p>
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-2">
-              <%= f.text_field :last_name_kana, class: "border-color black rounded" %>
-            </div>
-            <div class="col-md-4">
-              <%= f.text_field :first__name_kana, class: "border-color black rounded" %>
-            </div>
-          </div>
-        </div>
-        <p class="col-md-3">郵便番号</p>
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-2">
-              <%= f.number_field :post_code, class: "border-color black rounded" %>
-            </div>
-          </div>
-        </div>
-        <p class="col-md-3">住所</p>
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-2">
-              <%= f.text_field :address, class: "border-color black rounded" %>
-            </div>
-          </div>
-        </div>
-        <p class="col-md-3">電話番号</p>
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-2">
-              <%= f.number_field :phone_number, class: "border-color black rounded" %>
-            </div>
-          </div>
-        </div>
-        <p class="col-md-3">メールアドレス</p>
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-2">
-              <%= f.email_field :email, class: "border-color black rounded" %>
-            </div>
-          </div>
-        </div>
-        <p class="col-md-3">会員ステータス</p>
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-2">
-              <%= f.radio_button :is_deleted, "false" %>有効 <%= f.radio_button :is_deleted, "true" %>退会
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-md-2">
-                <%= f.submit "変更を保存", class: "btn btn-success border rounded" %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% end %>
+       <p class="col-md-3">会員ID</p>
+       <div class="col-md-2">
+        <%= @customer.id %>
+       </div>
       </div>
+       
+      <div class="row">
+       <p class="col-md-3">氏名</p>
+       <div class="col-md-2">
+        <%= f.text_field :last_name, autofocus: true, class: "border-color black rounded" %>
+       </div>
+       <div class="col-md-4">
+        <%= f.text_field :first_name, class: "border-color black rounded" %>
+       </div>
+      </div>
+      
+      <div class="row">
+       <p class="col-md-3">フリガナ</p>
+       <div class="col-md-2">
+        <%= f.text_field :last_name_kana, class: "border-color black rounded" %>
+       </div>
+       <div class="col-md-4">
+        <%= f.text_field :first__name_kana, class: "border-color black rounded" %>
+       </div>
+      </div>
+      
+      <div class="row">
+       <p class="col-md-3">郵便番号</p>
+       <div class="col-md-2">
+        <%= f.number_field :post_code, class: "border-color black rounded" %>
+       </div>
+      </div>
+          
+      <div class="row">
+       <p class="col-md-3">住所</p>
+       <div class="col-md-2">
+        <%= f.text_field :address, class: "border-color black rounded" %>
+       </div>
+      </div>
+      
+      <div class="row">
+       <p class="col-md-3">電話番号</p>
+       <div class="col-md-2">
+        <%= f.number_field :phone_number, class: "border-color black rounded" %>
+       </div>
+      </div>
+
+      <div class="row">
+       <p class="col-md-3">メールアドレス</p>
+       <div class="col-md-2">
+        <%= f.email_field :email, class: "border-color black rounded" %>
+       </div>
+      </div>
+      
+      <div class="row">
+       <p class="col-md-3">会員ステータス</p>
+       <div class="col-md-2">
+        <%= f.radio_button :is_deleted, "false" %>有効 <%= f.radio_button :is_deleted, "true" %>退会
+       </div>
+      </div>
+          
+      <div class="row justify-content-center">
+       <div class="col-md-2">
+        <%= f.submit "変更を保存", class: "btn btn-success border rounded text-center" %>
+       </div>
+      </div>
+          
+      <% end %>
     </div>
   </div>
 </div>
