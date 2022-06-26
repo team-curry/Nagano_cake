@@ -1,30 +1,29 @@
-<div class="container my-5 ml-6">
-  <h4 class="shadow-none bg-light rounded ml-4 pl-4">注文履歴詳細</h2>
+<div class="container my-5 ml-6" style="width: 70%;">
+  <h4 class="ml-4"><span class="pr-3 pl-3 bg-light">注文履歴詳</span></h2>
     <div class="row mt-3">
-      <table class="table table-borderless">
+      <table class="table table-borderless" style="font-size: 20px;">
         <tbody>
           <tr class="brown-border">
             <th>購入者</th>
             <td><%= link_to @order.customer.full_name, admins_customer_path(@order.customer.id) %></td>
-
-          <tr class="brown-border">
+          </tr>
+          <tr>
             <th>注文日</th>
             <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
           </tr>
 
-          <tr class="brown-border">
+          <tr>
             <th>配送先</th>
             <td><%= @order.addresses %></td>
           </tr>
 
-          <tr class="brown-border">
+          <tr>
             <th>支払い方法</th>
             <td><%= Order.payment_methods_i18n[@order.payment_method] %></td>
           </tr>
 
-          <tr class="brown-border">
+          <tr>
             <th>注文ステータス</th>
-            <td><%= Order.statuses_i18n[@order.status] %></td>
             <td>
               <%= form_for (@order), url: admins_status_path(@order) do |f| %>
               <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
@@ -43,11 +42,11 @@
         <table class="table table-borderless"  style="border-bottom: 1px solid gray; border-top: 1px solid gray;">
           <thead>
             <tr class="red-border">
-              <th class="table-active">商品</th>
-              <th class="table-active">単価(税込)</th>
-              <th class="table-active">個数</th>
-              <th class="table-active">小計</th>
-               <th class="table-active">製作ステータス</th>
+              <th class="bg-light">商品</th>
+              <th class="bg-light">単価(税込)</th>
+              <th class="bg-light">個数</th>
+              <th class="bg-light">小計</th>
+               <th class="bg-light">製作ステータス</th>
             </tr>
           </thead>
           <% @order_details.each do |order_item| %>
@@ -56,7 +55,7 @@
               <td><%= order_item.sweet.name %></td>
               <td><%= order_item.sweet.add_tax_price %></td>
               <td><%= order_item.quantity %></td>
-              <td><%= ((order_item.sweet.price * order_item.quantity) * 1.1).floor %></td>
+              <td><%= ((order_item.sweet.price * order_item.quantity) * 1.1).floor.to_s(:delimited) %></td>
               <td>
                 <%= form_for (order_item), url: admins_making_status_path(order_item, order_id: @order.id) do |f| %>
                 <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
@@ -70,13 +69,13 @@
       </div>
     </div>
 
-    <div style="margin-left:auto; margin-top:auto;">
+    <div style="margin-left:auto; margin-top:auto; font-size: 20px;">
       <div class="row">
-        <table class="table table-borderless offset-1">
+        <table class="table table-borderless">
           <tbody>
             <tr class="brown-border">
               <th>商品合計</th>
-              <td><%= @order.total_payment  %></td>
+              <td><%= @order.total_payment.to_s(:delimited)  %></td>
             </tr>
 
             <tr class="brown-border">
@@ -86,7 +85,7 @@
 
             <tr class="brown-border">
               <th>請求金額合計</th>
-              <td><%= @order.total_payment + 800 %></td>
+              <th><%= (@order.total_payment + 800).to_s(:delimited) %></th>
             </tr>
           </tbody>
         </table>
