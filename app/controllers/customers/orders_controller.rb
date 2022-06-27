@@ -62,9 +62,8 @@ def confirm
   elsif params[:order][:select_addresses] == "3"  #新しいお届け先
     address_new = current_customer.addresses.new(address_params)
     if address_new.save
-      render :new
     else
-      redirect_to customers_cart_items_path
+      render new
     end
 
   end
