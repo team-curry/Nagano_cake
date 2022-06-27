@@ -31,10 +31,13 @@
             </td>
             <td>
    <!--数量追加機能がわからない-->
-     
-               <%= number_field_tag "cart_item.quantity", cart_item.quantity, in: 1..10 %>
-               <%= hidden_field_tag "quantity[#{cart_item.id}]", cart_item.quantity %>
-               <%= f.submit "変更", class:"btn btn-success" %>
+
+          <%= form_for customers_cart_items_path(cart_item) do |f| %>
+            <%= number_field_tag "quantity",cart_item.quantity, in: 1..10 %>
+
+            <%= hidden_field_tag :cart_item_id, cart_item.id %>
+            <%= f.submit "変更", class: "btn btn-success" %>
+          <% end %>
     <!---->
             </td>
             <td>

@@ -22,7 +22,11 @@
 
             <tr class="brown-border">
               <td class="table-active">配送先</td>
-              <td><%= @order.addresses %></td>
+              <td>
+               〒<%= @order.post_code %><br>
+               <%= @order.addresses %><br>
+               <%= @order.name %>
+              </td>
             </tr>
 
             <tr class="brown-border">

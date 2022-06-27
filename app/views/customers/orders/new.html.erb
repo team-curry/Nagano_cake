@@ -28,17 +28,17 @@
         <%= f.radio_button :select_addresses, "2" %>
         <%= f.label :addresses_2, "登録済み住所から選択" %><br>
         <div class="ml-4">
-          <%= f.collection_select :addresses_id, Address.all, :id, :addresses, include_blank: "選択して下さい", class: "w-100" %><br>
+          <%= f.collection_select :address_id, Address.all, :id, :address, include_blank: "選択して下さい", class: "w-100" %><br>
         </div>
           <%= f.radio_button :select_addresses, "3" %>
           <%= f.label :addresses_3, "新しいお届け先" %>
         <div style = "width:100%;">
-           <%= f.label :post_code, "郵便番号（ハイフンなし）", class: "col-md-4" %>
-          <%= f.text_field :post_code, class: "col-md-4 border-color black rounded"%><br>
-          <%= f.label :addresses, "住所", class: "col-md-4" %>
-          <%= f.text_field :addresses, class: "col-md-7 border-color black rounded"%><br>
-          <%= f.label :name, "宛名", class: "col-md-4" %>
-          <%= f.text_field :name, class: "col-md-4 border-color black rounded" %><br>
+            <%= f.label :post_code, "郵便番号（ハイフンなし）", class: "col-md-4" %>
+            <%= f.text_field :post_code, class: "col-md-4 border-color black rounded"%><br>
+            <%= f.label :address, "住所", class: "col-md-4" %>
+            <%= f.text_field :addresses, class: "col-md-7 border-color black rounded"%><br>
+            <%= f.label :name, "宛名", class: "col-md-4" %>
+            <%= f.text_field :name, class: "col-md-4 border-color black rounded" %><br>
         </div>
     </div>
       <div style="text-align:center;">
