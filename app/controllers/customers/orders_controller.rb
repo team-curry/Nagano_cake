@@ -43,22 +43,18 @@ end
 
 def confirm
   @order = Order.new(order_params)
-  
-  if params[:order][:select_addresses] == "1"
+
+  if params[:order][:select_addresses] == "1" #自宅
     @order.post_code = current_customer.post_code
     @order.addresses = current_customer.address
     @order.name = current_customer.last_name + current_customer.first_name
 
   elsif params[:order][:select_addresses] == "2" #既存のお届け先
 
-    if Address.exists?(name: params[:order][:registered])
+    @order.post_code = Address.find(params[:order][:registered]).post_code
+    @order.name = Address.find(params[:order][:registered]).name
+    @order.addresses = Address.find(params[:order][:registered]).address
 
-      @order.name = Address.find(params[:order][:registered]).name
-      @order.address = Address.find(params[:order][:registered]).address
-    else
-      render :new
-
-    end
   elsif params[:order][:select_addresses] == "3"  #新しいお届け先
     address_new = current_customer.addresses.new(address_params)
     if address_new.save
@@ -75,9 +71,9 @@ end
     order = Order.find(params[:id])
     order.update(order_params)
     redirect_to admin_order_path(order)
-    
-    
-    
+
+
+
   end
 
   def item_status_update
