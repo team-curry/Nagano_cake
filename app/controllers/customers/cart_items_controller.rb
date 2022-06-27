@@ -8,8 +8,6 @@ layout "customers"
   end
 
   def create
-
-
    cart_item = current_customer.cart_items.find_by(sweet_id: params[:cart_item][:sweet_id])
     if cart_item.present?
       cart_item.quantity += params[:cart_item][:quantity].to_i
@@ -28,14 +26,16 @@ layout "customers"
     end
   end
 
-  def update
-    if @cart_item.update(quantity: params[:quantity].to_i)
-      flash[:notice] = 'カート内の商品が更新されました'
-    else
-      flash[:alert] = 'カート内の商品の更新に失敗しました'
-    end
-    redirect_to cart_item_path
+def update
+  cart_item = current_customer.cart_items.find(params[:cart_item_id])
+
+  if cart_item.update(quantity: params[:quantity].to_i)
+    flash[:notice] = 'カート内の商品が更新されました'
+  else
+    flash[:alert] = 'カート内の商品の更新に失敗しました'
   end
+  redirect_to customers_cart_items_path
+end
 
   def destroy
     cart_item = current_customer.cart_items.find_by(sweet_id: params[:sweet_id])
@@ -57,7 +57,7 @@ layout "customers"
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:sweet_id, :customer_id, :quantity)
+    params.require(:cart_item).permit(:sweet_id, :customer_id, :quantity,)
   end
 
 end

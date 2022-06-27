@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   resources:customers 
   resources:sweets
-  resource:cart_items do
+  resource :cart_items do
     collection do
       delete 'destroy_all'
     end
@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
  end
 
+  patch '/customers/cart_items/:id' => 'customers/cart_items#update', as: "cart_items_update"
+  
   namespace :admins do
 
   root to: "homes#top"
