@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Customers::SessionsController < Devise::SessionsController
-  before_action :customer_status, only: [:create]
+  before_action :customer_state, only: [:create]
 
   layout "customers"
   
@@ -15,13 +15,12 @@ class Customers::SessionsController < Devise::SessionsController
   
   protected
   
-  def customer_status
+  def customer_state
     @customer = Customer.find_by(email: params[:customer][:email])
-     return if @customer
-     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
+     return if !@customer
+     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
        redirect_to new_customer_registration_path
-     else 
-       redirect_to customers_path
+ 
      end
   end
 
