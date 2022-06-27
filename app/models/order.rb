@@ -8,4 +8,14 @@ class Order < ApplicationRecord
   enum payment_method: { credit: 0, bank: 1 }
 
   
+  
+  after_update do
+    if self.status == "payment_confirmation"
+      self.order_details.each {|order_detail|
+      order_detail.update(making_status: "waiting_for_production")
+      }
+    end
+  end
+  
+  
 end
