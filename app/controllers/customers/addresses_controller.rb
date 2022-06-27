@@ -5,7 +5,8 @@ class Customers::AddressesController < ApplicationController
     @address = Address.new
   end
   def create
-    @address = Address.new(address_params)
+    @address = current_customer.addresses.new(address_params)
+    @address.customer_id = current_customer.id
     @address.save
     redirect_to customers_addresses_path(@address.id)
   end
