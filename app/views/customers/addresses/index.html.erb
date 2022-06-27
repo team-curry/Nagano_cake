@@ -2,7 +2,7 @@
   <div class="row d-flex flex-column bd-highlight">
     <h5 class="col-4 text-center mt-5 bg-light">配送先登録/一覧</h5>
     <div class="text-left mt-5">
-      <%= form_with model: @address, url: new_customers_address_path, local: true do |f| %>
+      <%= form_with model: @address, url: customers_addresses_path, local: true do |f| %>
       <div class="row">
         <p class="col-md-3">郵便番号(ハイフンなし)</p>
         <div class="col-md-7">
