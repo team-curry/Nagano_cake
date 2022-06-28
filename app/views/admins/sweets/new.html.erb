@@ -1,0 +1,57 @@
+<div class="container">
+ <h5 class="mt-3 ml-5 col-3 text-center bg-light">商品新規登録</h5>
+ <% if @sweet.errors.any? %>
+  <%= @sweet.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @sweet.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <div class="form-group form-horizontal justify-content-center row mt-5">
+    <%= form_with model: @sweet, url:admins_sweets_path, method: :post do |f| %>
+    <div class="row form-group">
+     <h6 class="col-4">商品画像</h6>
+     <div class="col-8">
+      <%= f.file_field :image, accept: "image/*" %>
+     </div>
+    </div>
+    <div class="row form-group">
+     <h6 class="col-4">商品名</h6>
+      <div class="col-8">
+       <%= f.text_field :name, class: "w-100" %>
+      </div>
+    </div>
+    <div class="row form-group">
+     <h6 class="col-4">商品説明</h6>
+      <div class="col-8">
+       <%= f.text_area :explanation, class: "w-100" %>
+      </div>
+    </div>
+    <div class="row form-group">
+     <h6 class="col-4">ジャンル</h6>
+     <div class="col-8">
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい", class: "w-100" %>
+     </div>
+    </div>
+    
+    <div class="row form-group price_field">
+     <h6 class="col-4">税抜価格</h6>
+     <div class="col-8">
+      <%= f.number_field :price, class: "w-100" %>
+     </div>
+    </div>
+    
+    <div class="row form-group">
+     <h6 class="col-4">販売ステータス</h6>
+     <div class="col-8">
+      <%= f.radio_button :is_sale_status, "true" %>販売中 <%= f.radio_button :is_sale_status, "false" %>販売停止中
+     </div>
+    </div>
+    <div class="text-center">
+     <%= f.submit '新規登録', class: "btn btn-success" %>
+    </div>
+    <% end %>
+  </div>
+</div>

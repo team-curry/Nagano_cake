@@ -1,0 +1,55 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+*{
+ margin: 0;
+ padding: 0;
+}
+
+
+ .logo {
+   width: 230px;
+   height: 70px;
+ }
+
+ footer {
+  height: 80px;
+ }
+
+ .price_field {
+   position: relative;
+   &::after {
+     content: "円";
+     position: absolute;
+     right: -5px;
+     bottom: 0;
+   }
+ }
+
+.icon {
+  color: gray;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination > li > a {
+  border: none;
+  color: #999;
+}
+.pagination > li > a:hover {
+  color: turquoise;
+  background-color: white;
+}
+.pagination > .active > a {
+  color: turquoise;
+  background-color: white;
+}
+.pagination > .active > a:hover {
+  background-color: white;
+  color: turquoise;
+}
+.card-back{
+  background-color: rgba(255, 255, 255, 0.5);
+}
